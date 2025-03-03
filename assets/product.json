@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "image": "/images/Image1.jpg",
+      "image": "images/Image1.jpg",
       "title": "Camera",
       "price": 100500.00,
       "description": "description about camera",
@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "image": "/images/Image2.jpg",
+      "image": "images/Image2.jpg",
       "title": "Fan",
       "price": 10500.0,
       "description": "description about fan",
@@ -17,7 +17,7 @@
     },
     {
       "id": 3,
-      "image": "/images/Image3.jpg",
+      "image": "images/Image3.jpg",
       "title": "Kettle",
       "price": 6500.0,
       "description": "description about kettle",
@@ -25,7 +25,7 @@
     },
     {
       "id": 4,
-      "image": "/images/Image4.jpg",
+      "image": "images/Image4.jpg",
       "title": "Digital Watch",
       "price": 2500.0,
       "description": "description about digital watch",
@@ -33,7 +33,7 @@
     },
     {
       "id": 5,
-      "image": "/images/Image5.jpg",
+      "image": "images/Image5.jpg",
       "title": "HeadPhone",
       "price": 22500.0,
       "description": "description about headphone",
@@ -41,7 +41,7 @@
     },
     {
       "id": 6,
-      "image": "/images/Image6.jpg",
+      "image": "images/Image6.jpg",
       "title": "JBL",
       "price": 25500.0,
       "description": "description about JBL",
@@ -49,7 +49,7 @@
     },
     {
       "id": 7,
-      "image": "/images/Image7.jpg",
+      "image": "images/Image7.jpg",
       "title": "Electrical Iorn",
       "price": 3500.0,
       "description": "description about electrical iorn",
@@ -57,7 +57,7 @@
     },
     {
       "id": 8,
-      "image": "/images/Image8.jpg",
+      "image": "images/Image8.jpg",
       "title": "Rice Cooker",
       "price": 16500.0,
       "description": "description about rice cooker",
@@ -65,7 +65,7 @@
     },
     {
       "id": 9,
-      "image": "/images/Image9.jpg",
+      "image": "images/Image9.jpg",
       "title": "Blender",
       "price": 12000.0,
       "description": "description about blender",
@@ -73,7 +73,7 @@
     },
     {
       "id": 10,
-      "image": "/images/Image10.jpg",
+      "image": "images/Image10.jpg",
       "title": "Oven",
       "price": 85000.0,
       "description": "description about digital Oven",
@@ -81,7 +81,7 @@
     },
     {
       "id": 11,
-      "image": "/images/Image11.jpg",
+      "image": "images/Image11.jpg",
       "title": "Fridge",
       "price": 225000.0,
       "description": "description about Fridge",
@@ -89,7 +89,7 @@
     },
     {
       "id": 12,
-      "image": "/images/Image12.jpg",
+      "image": "images/Image12.jpg",
       "title": "Television",
       "price": 90000.0,
       "description": "description about television",
@@ -97,7 +97,7 @@
     },
     {
       "id": 13,
-      "image": "/images/Image13.jpg",
+      "image": "images/Image13.jpg",
       "title": "Laptop",
       "price": 265000.0,
       "description": "description about laptop",
@@ -105,7 +105,7 @@
     },
     {
       "id": 14,
-      "image": "/images/Image14.jpg",
+      "image": "images/Image14.jpg",
       "title": "Electrical Oven",
       "price": 225000.0,
       "description": "description about digital electrical oven",
@@ -113,7 +113,7 @@
     },
     {
       "id": 15,
-      "image": "/images/Image15.jpg",
+      "image": "images/Image15.jpg",
       "title": "Gas Cooker",
       "price": 20000.0,
       "description": "description about Gas Cooker",
@@ -121,7 +121,7 @@
     },
     {
       "id": 16,
-      "image": "/images/Image6.jpg",
+      "image": "images/Image16.jpg",
       "title": "Portable Speaker",
       "price": 15000.0,
       "description": "description about portable speaker",

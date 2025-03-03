@@ -1,12 +1,36 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Query } from '@nestjs/common';
+import { AppService, Product } from './app.service';
 
-@Controller()
+@Controller('products')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  // Section 1: Fetch Paginated Products
+  @Get('get-products')
+  getPaginatedProducts(
+    @Query('page') page: string,
+    @Query('size') size: string,
+  ): Product[] {
+    const pageNumber = parseInt(page, 10) || 0;
+    const pageSize = parseInt(size, 10) || 4;
+    return this.appService.getPaginatedProducts(pageNumber, pageSize);
+  }
+
+  // Section 2: Fetch Best-Selling Products (Paginated)
+  @Get('get-best-selling-products')
+  getBestSellingProducts(
+    @Query('page') page: string,
+    @Query('size') size: string,
+  ): Product[] {
+    const pageNumber = parseInt(page, 10) || 0;
+    const pageSize = parseInt(size, 10) || 4;
+    return this.appService.getBestSellingProducts(pageNumber, pageSize);
+  }
+
+  // Section 3: Fetch Limited Number of Products
+  @Get('get-section3-products')
+  getSection3Products(@Query('limit') limit: string): Product[] {
+    const limitNumber = parseInt(limit, 10) || 4;
+    return this.appService.getLimitedProducts(limitNumber);
   }
 }
