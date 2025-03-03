@@ -22,7 +22,6 @@ export class AppService {
     this.products = JSON.parse(fileData);
   }
 
-  // Section 1: Get Paginated Products
   getPaginatedProducts(page: number, size: number): Product[] {
     const start = page * size;
     const end = Math.min(start + size, this.products.length);
@@ -30,24 +29,14 @@ export class AppService {
     if (start >= this.products.length) {
       return [];
     }
-    return this.products.slice(start, end).map((product) => ({
-      ...product,
-      image: `http://localhost:3001/assets/images/${product.image}`,
-    }));
+    return this.products.slice(start, end);
   }
 
-  // Section 2: Get Best-Selling Products (Currently identical to paginated products)
   getBestSellingProducts(page: number, size: number): Product[] {
-    // For now, we just return the same products as paginated.
-    // This can be adjusted if there's a way to mark "best-selling" products.
     return this.getPaginatedProducts(page, size);
   }
 
-  // Section 3: Get Limited Number of Products
   getLimitedProducts(limit: number): Product[] {
-    return this.products.slice(0, limit).map((product) => ({
-      ...product,
-       image: `http://localhost:3001/assets/images/${product.image}`,
-    }));
+    return this.products.slice(0, limit);
   }
 }

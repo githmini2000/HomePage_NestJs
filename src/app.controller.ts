@@ -5,7 +5,7 @@ import { AppService, Product } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // Section 1: Fetch Paginated Products
+  // Section 1:
   @Get('get-products')
   getPaginatedProducts(
     @Query('page') page: string,
@@ -16,7 +16,7 @@ export class AppController {
     return this.appService.getPaginatedProducts(pageNumber, pageSize);
   }
 
-  // Section 2: Fetch Best-Selling Products (Paginated)
+  // Section 2:
   @Get('get-best-selling-products')
   getBestSellingProducts(
     @Query('page') page: string,
@@ -27,7 +27,7 @@ export class AppController {
     return this.appService.getBestSellingProducts(pageNumber, pageSize);
   }
 
-  // Section 3: Fetch Limited Number of Products
+  // Section 3:
   @Get('get-section3-products')
   getSection3Products(@Query('limit') limit: string): Product[] {
     const limitNumber = parseInt(limit, 10) || 4;
