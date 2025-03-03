@@ -1,131 +1,130 @@
 [
-    {
-      "id": 1,
-      "image": "images/Image1.jpg",
-      "title": "Camera",
-      "price": 100500.00,
-      "description": "description about camera",
-      "rating": 5
-    },
-    {
-      "id": 2,
-      "image": "images/Image2.jpg",
-      "title": "Fan",
-      "price": 10500.0,
-      "description": "description about fan",
-      "rating": 5
-    },
-    {
-      "id": 3,
-      "image": "images/Image3.jpg",
-      "title": "Kettle",
-      "price": 6500.0,
-      "description": "description about kettle",
-      "rating": 4
-    },
-    {
-      "id": 4,
-      "image": "images/Image4.jpg",
-      "title": "Digital Watch",
-      "price": 2500.0,
-      "description": "description about digital watch",
-      "rating": 5
-    },
-    {
-      "id": 5,
-      "image": "images/Image5.jpg",
-      "title": "HeadPhone",
-      "price": 22500.0,
-      "description": "description about headphone",
-      "rating": 3
-    },
-    {
-      "id": 6,
-      "image": "images/Image6.jpg",
-      "title": "JBL",
-      "price": 25500.0,
-      "description": "description about JBL",
-      "rating": 5
-    },
-    {
-      "id": 7,
-      "image": "images/Image7.jpg",
-      "title": "Electrical Iorn",
-      "price": 3500.0,
-      "description": "description about electrical iorn",
-      "rating": 5
-    },
-    {
-      "id": 8,
-      "image": "images/Image8.jpg",
-      "title": "Rice Cooker",
-      "price": 16500.0,
-      "description": "description about rice cooker",
-      "rating": 5
-    },
-    {
-      "id": 9,
-      "image": "images/Image9.jpg",
-      "title": "Blender",
-      "price": 12000.0,
-      "description": "description about blender",
-      "rating": 4
-    },
-    {
-      "id": 10,
-      "image": "images/Image10.jpg",
-      "title": "Oven",
-      "price": 85000.0,
-      "description": "description about digital Oven",
-      "rating": 5
-    },
-    {
-      "id": 11,
-      "image": "images/Image11.jpg",
-      "title": "Fridge",
-      "price": 225000.0,
-      "description": "description about Fridge",
-      "rating": 3
-    },
-    {
-      "id": 12,
-      "image": "images/Image12.jpg",
-      "title": "Television",
-      "price": 90000.0,
-      "description": "description about television",
-      "rating": 5
-    },
-    {
-      "id": 13,
-      "image": "images/Image13.jpg",
-      "title": "Laptop",
-      "price": 265000.0,
-      "description": "description about laptop",
-      "rating": 4
-    },
-    {
-      "id": 14,
-      "image": "images/Image14.jpg",
-      "title": "Electrical Oven",
-      "price": 225000.0,
-      "description": "description about digital electrical oven",
-      "rating": 5
-    },
-    {
-      "id": 15,
-      "image": "images/Image15.jpg",
-      "title": "Gas Cooker",
-      "price": 20000.0,
-      "description": "description about Gas Cooker",
-      "rating": 3
-    },
-    {
-      "id": 16,
-      "image": "images/Image16.jpg",
-      "title": "Portable Speaker",
-      "price": 15000.0,
-      "description": "description about portable speaker",
-      "rating": 5
-    }
-  ]
-  
+  {
+    "id": 1,
+    "image": "http://localhost:3001/images/Image1.jpg",
+    "title": "Camera",
+    "price": 100500.0,
+    "description": "description about camera",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "image": "http://localhost:3001/images/Image2.jpg",
+    "title": "Fan",
+    "price": 10500.0,
+    "description": "description about fan",
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "image": "http://localhost:3001/images/Image3.jpg",
+    "title": "Kettle",
+    "price": 6500.0,
+    "description": "description about kettle",
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "image": "http://localhost:3001/images/Image4.jpg",
+    "title": "Digital Watch",
+    "price": 2500.0,
+    "description": "description about digital watch",
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "image": "http://localhost:3001/images/Image5.jpg",
+    "title": "HeadPhone",
+    "price": 22500.0,
+    "description": "description about headphone",
+    "rating": 3
+  },
+  {
+    "id": 6,
+    "image": "http://localhost:3001/images/Image6.jpg",
+    "title": "JBL",
+    "price": 25500.0,
+    "description": "description about JBL",
+    "rating": 5
+  },
+  {
+    "id": 7,
+    "image": "http://localhost:3001/images/Image7.jpg",
+    "title": "Electrical Iorn",
+    "price": 3500.0,
+    "description": "description about electrical iorn",
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "image": "http://localhost:3001/images/Image8.jpg",
+    "title": "Rice Cooker",
+    "price": 16500.0,
+    "description": "description about rice cooker",
+    "rating": 5
+  },
+  {
+    "id": 9,
+    "image": "http://localhost:3001/images/Image9.jpg",
+    "title": "Blender",
+    "price": 12000.0,
+    "description": "description about blender",
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "image": "http://localhost:3001/images/Image10.jpg",
+    "title": "Oven",
+    "price": 85000.0,
+    "description": "description about digital Oven",
+    "rating": 5
+  },
+  {
+    "id": 11,
+    "image": "http://localhost:3001/images/Image11.jpg",
+    "title": "Fridge",
+    "price": 225000.0,
+    "description": "description about Fridge",
+    "rating": 3
+  },
+  {
+    "id": 12,
+    "image": "http://localhost:3001/images/Image12.jpg",
+    "title": "Television",
+    "price": 90000.0,
+    "description": "description about television",
+    "rating": 5
+  },
+  {
+    "id": 13,
+    "image": "http://localhost:3001/images/Image13.jpg",
+    "title": "Laptop",
+    "price": 265000.0,
+    "description": "description about laptop",
+    "rating": 4
+  },
+  {
+    "id": 14,
+    "image": "http://localhost:3001/images/Image14.jpg",
+    "title": "Electrical Oven",
+    "price": 225000.0,
+    "description": "description about digital electrical oven",
+    "rating": 5
+  },
+  {
+    "id": 15,
+    "image": "http://localhost:3001/images/Image15.jpg",
+    "title": "Gas Cooker",
+    "price": 20000.0,
+    "description": "description about Gas Cooker",
+    "rating": 3
+  },
+  {
+    "id": 16,
+    "image": "http://localhost:3001/images/Image16.jpg",
+    "title": "Portable Speaker",
+    "price": 15000.0,
+    "description": "description about portable speaker",
+    "rating": 5
+  }
+]
