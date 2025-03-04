@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "image": "http://localhost:3001/images/Image1.jpg",
+      "title": "Camera",
+      "price": 100500.0,
+      "description": "description about camera",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "image": "http://localhost:3001/images/Image2.jpg",
+      "title": "Fan",
+      "price": 10500.0,
+      "description": "description about fan",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "image": "http://localhost:3001/images/Image3.jpg",
+      "title": "Kettle",
+      "price": 6500.0,
+      "description": "description about kettle",
+      "rating": 4
+    },
+    {
+      "id": 4,
+      "image": "http://localhost:3001/images/Image4.jpg",
+      "title": "Digital Watch",
+      "price": 2500.0,
+      "description": "description about digital watch",
+      "rating": 5
+    },
+    {
+      "id": 5,
+      "image": "http://localhost:3001/images/Image5.jpg",
+      "title": "HeadPhone",
+      "price": 22500.0,
+      "description": "description about headphone",
+      "rating": 3
+    },
+    {
+      "id": 6,
+      "image": "http://localhost:3001/images/Image6.jpg",
+      "title": "JBL",
+      "price": 25500.0,
+      "description": "description about JBL",
+      "rating": 5
+    },
+    {
+      "id": 7,
+      "image": "http://localhost:3001/images/Image7.jpg",
+      "title": "Electrical Iorn",
+      "price": 3500.0,
+      "description": "description about electrical iorn",
+      "rating": 5
+    },
+    {
+      "id": 8,
+      "image": "http://localhost:3001/images/Image8.jpg",
+      "title": "Rice Cooker",
+      "price": 16500.0,
+      "description": "description about rice cooker",
+      "rating": 5
+    }
+  ]

@@ -1,19 +1,19 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { AppService, Product } from './app.service';
+import { AppService } from './app.service';
 
-@Controller('products')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('get-products')
-  getProducts(
-    @Query('section') section: string,
-    @Query('page') page: string,
-    @Query('size') size: string
-  ): Product[] {
-    const pageNumber = parseInt(page, 10) || 0;
-    const pageSize = parseInt(size, 10) || 4;
+  @Get('items')
+  async getItems(@Query('page') page: string) {
+    const pageNumber = page ? parseInt(page, 10) : 1; // Default to page 1 if no query parameter is provided
+    const paginatedData = await this.appService.getPaginatedItems(pageNumber);
+    const todaysDeals = await this.appService.getTodaysDeals();
 
-    return this.appService.getProductsBySection(section, pageNumber, pageSize);
+    return {
+      ...paginatedData,
+      todaysDeals, // Include TodaysDeals in the response
+    };
   }
 }

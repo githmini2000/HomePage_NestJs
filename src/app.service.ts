@@ -1,51 +1,44 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
-import * as path from 'path';
-
-export interface Product {
-  id: number;
-  image: string;
-  title: string;
-  price: number;
-  description: string;
-  rating: number;
-}
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BestSelling } from './app.entity';
+import { FeaturedItems } from './app.entity';
+import { TodaysDeals } from './app.entity';
 
 @Injectable()
 export class AppService {
-  private products: {
-    FeaturedItems: Product[];
-    BestSellingProducts: Product[];
-    TodaysDeals: Product[];
-  };
+  constructor(
+    @InjectRepository(BestSelling)
+    private bestSellingRepository: Repository<BestSelling>,
+    
+    @InjectRepository(FeaturedItems)
+    private featuredItemsRepository: Repository<FeaturedItems>,
+    
+    @InjectRepository(TodaysDeals)
+    private todaysDealsRepository: Repository<TodaysDeals>
+  ) {}
 
-  constructor() {
-    const filePath = path.join(__dirname, '..', 'assets', 'product.json');
-    console.log('Looking for file at:', filePath);
-    const fileData = fs.readFileSync(filePath, 'utf-8');
-    this.products = JSON.parse(fileData);
+  // Fetch paginated BestSelling and FeaturedItems
+  async getPaginatedItems(page: number = 1) {
+    const pageSize = 4; // Load 4 items at a time
+    const bestSellingItems = await this.bestSellingRepository.find({
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    });
+    const featuredItems = await this.featuredItemsRepository.find({
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    });
+
+    return {
+      bestSellingItems,
+      featuredItems,
+    };
   }
 
-  getProductsBySection(section: string, page: number, size: number): Product[] {
-    let selectedProducts: Product[] = [];
-
-    switch (section) {
-      case 'featured':
-        selectedProducts = this.products.FeaturedItems;
-        break;
-      case 'best-selling':
-        selectedProducts = this.products.BestSellingProducts;
-        break;
-      case 'todays-deals':
-        selectedProducts = this.products.TodaysDeals;
-        break;
-      default:
-        return [];
-    }
-
-    const start = page * size;
-    const end = Math.min(start + size, selectedProducts.length);
-
-    return start >= selectedProducts.length ? [] : selectedProducts.slice(start, end);
+  // Fetch all TodaysDeals
+  async getTodaysDeals() {
+    const todaysDeals = await this.todaysDealsRepository.find();
+    return todaysDeals;
   }
 }
