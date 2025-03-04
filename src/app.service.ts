@@ -13,7 +13,11 @@ export interface Product {
 
 @Injectable()
 export class AppService {
-  private products: Product[] = [];
+  private products: {
+    FeaturedItems: Product[];
+    BestSellingProducts: Product[];
+    TodaysDeals: Product[];
+  };
 
   constructor() {
     const filePath = path.join(__dirname, '..', 'assets', 'product.json');
@@ -22,21 +26,26 @@ export class AppService {
     this.products = JSON.parse(fileData);
   }
 
-  getPaginatedProducts(page: number, size: number): Product[] {
-    const start = page * size;
-    const end = Math.min(start + size, this.products.length);
+  getProductsBySection(section: string, page: number, size: number): Product[] {
+    let selectedProducts: Product[] = [];
 
-    if (start >= this.products.length) {
-      return [];
+    switch (section) {
+      case 'featured':
+        selectedProducts = this.products.FeaturedItems;
+        break;
+      case 'best-selling':
+        selectedProducts = this.products.BestSellingProducts;
+        break;
+      case 'todays-deals':
+        selectedProducts = this.products.TodaysDeals;
+        break;
+      default:
+        return [];
     }
-    return this.products.slice(start, end);
-  }
 
-  getBestSellingProducts(page: number, size: number): Product[] {
-    return this.getPaginatedProducts(page, size);
-  }
+    const start = page * size;
+    const end = Math.min(start + size, selectedProducts.length);
 
-  getLimitedProducts(limit: number): Product[] {
-    return this.products.slice(0, limit);
+    return start >= selectedProducts.length ? [] : selectedProducts.slice(start, end);
   }
 }
