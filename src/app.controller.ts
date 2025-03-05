@@ -6,14 +6,32 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('items')
-  async getItems(@Query('page') page: string) {
-    const pageNumber = page ? parseInt(page, 10) : 1; // Default to page 1 if no query parameter is provided
-    const paginatedData = await this.appService.getPaginatedItems(pageNumber);
-    const todaysDeals = await this.appService.getTodaysDeals();
+  async getItems(
+    @Query('section') section: string,
+    @Query('page') page: string,
+    @Query('size') size: string,
+  ) {
+    const pageNumber = page ? parseInt(page, 10) : 1; // Default page 1
+    const pageSize = size ? parseInt(size, 10) : 4; // Default size 4
 
-    return {
-      ...paginatedData,
-      todaysDeals, // Include TodaysDeals in the response
-    };
+    // Validate section parameter
+    if (
+      !section ||
+      !['bestSelling', 'featuredItems', 'todaysDeals'].includes(section)
+    ) {
+      return {
+        message:
+          'Invalid section. Please use: bestSelling, featuredItems, or todaysDeals.',
+      };
+    }
+
+    // Fetch paginated data
+    const paginatedData = await this.appService.getPaginatedItems(
+      section,
+      pageNumber,
+      pageSize,
+    );
+
+    return paginatedData.items;
   }
 }

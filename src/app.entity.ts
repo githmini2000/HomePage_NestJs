@@ -1,35 +1,47 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 // BestSelling Entity
-@Entity('bestsellings')
+@Entity('bestselling')
 export class BestSelling {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  image: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  price: number;
 
   @Column()
   description: string;
 
   @Column()
-  price: number;
+  rating: number;
 }
 
 // FeaturedItems Entity
-@Entity('featureditems')
+@Entity('featureditem')
 export class FeaturedItems {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  image: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  price: number;
 
   @Column()
   description: string;
 
   @Column()
-  price: number;
+  rating: number;
 }
 
 // TodaysDeals Entity
@@ -39,11 +51,17 @@ export class TodaysDeals {
   id: number;
 
   @Column()
-  name: string;
+  image: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  price: number;
 
   @Column()
   description: string;
 
   @Column()
-  price: number;
+  rating: number;
 }
