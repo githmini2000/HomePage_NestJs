@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BestSelling, FeaturedItems, TodaysDeals } from './app.entity';
+import { Category } from './category/category.entity';
 
 @Injectable()
 export class AppService {
@@ -14,6 +15,9 @@ export class AppService {
 
     @InjectRepository(TodaysDeals)
     private todaysDealsRepository: Repository<TodaysDeals>,
+
+    @InjectRepository(Category)
+    private readonly categoryRepo: Repository<Category>,
   ) {}
 
   // Fetch paginated items
@@ -38,17 +42,11 @@ export class AppService {
         throw new Error('Invalid section');
     }
 
-    console.log(
-      `Querying DB with skip: ${(page - 1) * pageSize}, take: ${pageSize}`,
-    );
-
     // Get paginated items
     const items = await repository.find({
       skip: (page - 1) * pageSize,
       take: pageSize,
     });
-
-    console.log(`DB returned ${items.length} items`);
 
     const updatedItems = items.map((item) => ({
       ...item,
@@ -68,6 +66,7 @@ export class AppService {
   async addItem(
     section: string,
     newItem: BestSelling | FeaturedItems | TodaysDeals,
+    category_id?: number,
   ) {
     let repository: Repository<any>;
 
@@ -85,9 +84,27 @@ export class AppService {
         throw new Error('Invalid section');
     }
 
+    // Fetch the category by id if provided
+    if (category_id) {
+      const category = await this.getCategoryById(category_id);
+      (newItem as any).category = category;
+    }
+
     const item = repository.create(newItem);
-    console.log('Before saving:', item); // Debugging log
     return await repository.save(item);
+  }
+
+  // Helper method to fetch Category by ID
+  private async getCategoryById(categoryId: number) {
+    const category = await this.categoryRepo.findOne({
+      where: { id: categoryId },
+    });
+
+    if (!category) {
+      throw new Error('Category not found');
+    }
+
+    return category;
   }
 
   // Update an existing item
@@ -95,6 +112,7 @@ export class AppService {
     section: string,
     id: string,
     updatedItem: BestSelling | FeaturedItems | TodaysDeals,
+    category_id?: number,
   ) {
     let repository: Repository<any>;
 
@@ -112,11 +130,22 @@ export class AppService {
         throw new Error('Invalid section');
     }
 
-    const item = await repository.findOne({ where: { id: Number(id) } });
+    const item = await repository.findOne({
+      where: { id: Number(id) },
+      relations: ['category'],
+    });
+
     if (!item) {
       throw new Error('Item not found');
     }
 
+    // Assign category if category_id is provided
+    if (category_id) {
+      const category = await this.getCategoryById(category_id);
+      (updatedItem as any).category = category;
+    }
+
+    // Update item details
     Object.assign(item, updatedItem);
     return await repository.save(item);
   }
