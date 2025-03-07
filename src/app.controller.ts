@@ -47,9 +47,16 @@ export class AppController {
   @Post('items/:section')
   async addItem(
     @Param('section') section: string,
-    @Body() newItem: BestSelling | FeaturedItems | TodaysDeals,
+    @Body()
+    newItem: (BestSelling | FeaturedItems | TodaysDeals) & {
+      category_id?: number;
+    },
   ) {
-    const addedItem = await this.appService.addItem(section, newItem);
+    const addedItem = await this.appService.addItem(
+      section,
+      newItem,
+      newItem.category_id,
+    );
     return addedItem;
   }
 
@@ -58,9 +65,17 @@ export class AppController {
   async updateItem(
     @Param('section') section: string,
     @Param('id') id: string,
-    @Body() updatedItem: BestSelling | FeaturedItems | TodaysDeals,
+    @Body()
+    updatedItem: (BestSelling | FeaturedItems | TodaysDeals) & {
+      category_id?: number;
+    },
   ) {
-    const updated = await this.appService.updateItem(section, id, updatedItem);
+    const updated = await this.appService.updateItem(
+      section,
+      id,
+      updatedItem,
+      updatedItem.category_id,
+    );
     return updated;
   }
 
