@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Category } from './category/category.entity';
 
 // BestSelling Entity
 @Entity('bestselling')
@@ -42,6 +49,10 @@ export class FeaturedItems {
 
   @Column()
   rating: number;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 }
 
 // TodaysDeals Entity
