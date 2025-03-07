@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { BestSelling, FeaturedItems, TodaysDeals } from './app.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { Category } from './category/category.entity';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -15,15 +17,21 @@ import { join } from 'path';
       username: 'root',
       password: 'Password12',
       database: 'homepage',
-      entities: [BestSelling, FeaturedItems, TodaysDeals],
+      entities: [BestSelling, FeaturedItems, TodaysDeals, Category],
       synchronize: false,
     }),
-    TypeOrmModule.forFeature([BestSelling, FeaturedItems, TodaysDeals]),
+    TypeOrmModule.forFeature([
+      BestSelling,
+      FeaturedItems,
+      TodaysDeals,
+      Category,
+    ]),
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'assets'),
       serveRoot: '/images',
     }),
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
