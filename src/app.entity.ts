@@ -7,28 +7,6 @@ import {
 } from 'typeorm';
 import { Category } from './category/category.entity';
 
-// BestSelling Entity
-@Entity('bestselling')
-export class BestSelling {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  image: string;
-
-  @Column()
-  title: string;
-
-  @Column()
-  price: number;
-
-  @Column()
-  description: string;
-
-  @Column()
-  rating: number;
-}
-
 // FeaturedItems Entity
 @Entity('featureditem')
 export class FeaturedItems {
@@ -58,6 +36,28 @@ export class FeaturedItems {
 // TodaysDeals Entity
 @Entity('todaysdeals')
 export class TodaysDeals {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  image: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  price: number;
+
+  @Column()
+  description: string;
+
+  @Column()
+  rating: number;
+}
+
+// BestSelling Entity
+@Entity('bestselling')
+export class BestSelling {
   @PrimaryGeneratedColumn()
   id: number;
 
