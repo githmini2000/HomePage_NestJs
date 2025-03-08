@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BestSelling, FeaturedItems, TodaysDeals } from './app.entity';
-import { Category } from './category/category.entity';
 
 @Injectable()
 export class AppService {
@@ -15,16 +14,12 @@ export class AppService {
 
     @InjectRepository(TodaysDeals)
     private todaysDealsRepository: Repository<TodaysDeals>,
-
-    @InjectRepository(Category)
-    private readonly categoryRepo: Repository<Category>,
   ) {}
-
-  // Fetch paginated items
   async getPaginatedItems(
     section: string,
     page: number = 1,
     pageSize: number = 4,
+    category_id?: number,
   ) {
     let repository: Repository<any>;
 
@@ -42,10 +37,18 @@ export class AppService {
         throw new Error('Invalid section');
     }
 
-    // Get paginated items
+    const where: any = {};
+
+    if (category_id) {
+      where.category = { id: category_id };
+    }
+
+    // Get paginated and filtered items
     const items = await repository.find({
+      where,
       skip: (page - 1) * pageSize,
       take: pageSize,
+      relations: ['category'],
     });
 
     const updatedItems = items.map((item) => ({
@@ -66,7 +69,6 @@ export class AppService {
   async addItem(
     section: string,
     newItem: BestSelling | FeaturedItems | TodaysDeals,
-    category_id?: number,
   ) {
     let repository: Repository<any>;
 
@@ -84,35 +86,15 @@ export class AppService {
         throw new Error('Invalid section');
     }
 
-    // Fetch the category by id if provided
-    if (category_id) {
-      const category = await this.getCategoryById(category_id);
-      (newItem as any).category = category;
-    }
-
     const item = repository.create(newItem);
     return await repository.save(item);
-  }
-
-  // Helper method to fetch Category by ID
-  private async getCategoryById(categoryId: number) {
-    const category = await this.categoryRepo.findOne({
-      where: { id: categoryId },
-    });
-
-    if (!category) {
-      throw new Error('Category not found');
-    }
-
-    return category;
   }
 
   // Update an existing item
   async updateItem(
     section: string,
     id: string,
-    updatedItem: BestSelling | FeaturedItems | TodaysDeals,
-    category_id?: number,
+    updatedItem: Partial<BestSelling | FeaturedItems | TodaysDeals>,
   ) {
     let repository: Repository<any>;
 
@@ -132,20 +114,12 @@ export class AppService {
 
     const item = await repository.findOne({
       where: { id: Number(id) },
-      relations: ['category'],
     });
 
     if (!item) {
       throw new Error('Item not found');
     }
 
-    // Assign category if category_id is provided
-    if (category_id) {
-      const category = await this.getCategoryById(category_id);
-      (updatedItem as any).category = category;
-    }
-
-    // Update item details
     Object.assign(item, updatedItem);
     return await repository.save(item);
   }

@@ -14,15 +14,18 @@ import { BestSelling, FeaturedItems, TodaysDeals } from './app.entity';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  // GET method to fetch items
+
+  // GET method
   @Get('items')
   async getItems(
     @Query('section') section: string,
     @Query('page') page: string,
     @Query('size') size: string,
+    @Query('category_id') category_id?: string,
   ) {
-    const pageNumber = page ? parseInt(page, 10) : 1; // Default page 1
-    const pageSize = size ? parseInt(size, 10) : 4; // Default size 4
+    const pageNumber = page ? parseInt(page, 10) : 1;
+    const pageSize = size ? parseInt(size, 10) : 4;
+    const categoryId = category_id ? parseInt(category_id, 10) : undefined;
 
     if (
       !section ||
@@ -38,48 +41,34 @@ export class AppController {
       section,
       pageNumber,
       pageSize,
+      categoryId,
     );
 
     return paginatedData.items;
   }
 
-  // POST method to add new item
+  // POST method
   @Post('items/:section')
   async addItem(
     @Param('section') section: string,
-    @Body()
-    newItem: (BestSelling | FeaturedItems | TodaysDeals) & {
-      category_id?: number;
-    },
+    @Body() newItem: BestSelling | FeaturedItems | TodaysDeals,
   ) {
-    const addedItem = await this.appService.addItem(
-      section,
-      newItem,
-      newItem.category_id,
-    );
+    const addedItem = await this.appService.addItem(section, newItem);
     return addedItem;
   }
 
-  // PUT method to update an existing item
+  // PUT method
   @Put('items/:section/:id')
   async updateItem(
     @Param('section') section: string,
     @Param('id') id: string,
-    @Body()
-    updatedItem: (BestSelling | FeaturedItems | TodaysDeals) & {
-      category_id?: number;
-    },
+    @Body() updatedItem: Partial<BestSelling | FeaturedItems | TodaysDeals>,
   ) {
-    const updated = await this.appService.updateItem(
-      section,
-      id,
-      updatedItem,
-      updatedItem.category_id,
-    );
+    const updated = await this.appService.updateItem(section, id, updatedItem);
     return updated;
   }
 
-  // DELETE method to remove an item
+  // DELETE method
   @Delete('items/:section/:id')
   async deleteItem(@Param('section') section: string, @Param('id') id: string) {
     await this.appService.deleteItem(section, id);
