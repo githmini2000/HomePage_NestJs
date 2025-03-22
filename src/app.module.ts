@@ -7,6 +7,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { Category } from './category/category.entity';
 import { CategoryModule } from './category/category.module';
+import { Customer } from './customer/customer.entity';  
+import { CustomerModule } from './customer/customer.module'; 
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { CategoryModule } from './category/category.module';
       username: 'root',
       password: 'Password12',
       database: 'homepage',
-      entities: [BestSelling, FeaturedItems, TodaysDeals, Category],
+      entities: [BestSelling, FeaturedItems, TodaysDeals, Category,Customer],
       synchronize: false,
     }),
     TypeOrmModule.forFeature([
@@ -25,6 +27,7 @@ import { CategoryModule } from './category/category.module';
       FeaturedItems,
       TodaysDeals,
       Category,
+      Customer,
     ]),
 
     ServeStaticModule.forRoot({
@@ -32,6 +35,7 @@ import { CategoryModule } from './category/category.module';
       serveRoot: '/images',
     }),
     CategoryModule,
+    CustomerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
